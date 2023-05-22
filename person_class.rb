@@ -1,4 +1,4 @@
-class person
+class Person
     def initialize(name="Unknown", age, parent_permission=true)
         @id = id
         @name = name
