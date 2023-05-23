@@ -21,9 +21,9 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Enumerable<a name="about-project"></a>
+# 📖 OOP School Library<a name="about-project"></a>
 
-**Enumerable** is a simple ruby code to make a school library.
+**OOP school library** is a simple ruby code to make a school library that add Person, Student and Teacher classes. It helps keep school library records.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -137,6 +137,6 @@ Feel free to check the [issues page](../../issues/).
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](./MIT.md) licensed.
+This project is [MIT](https://github.com/Tracy-miranja/school_library/blob/dev/LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
