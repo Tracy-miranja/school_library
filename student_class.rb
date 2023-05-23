@@ -11,5 +11,5 @@ class Student < Person
   end
 end
 
-person1= Person.new(23, parent_permission: true, name: 'Unknown')
+person1 = Person.new(23, parent_permission: true, name: 'Unknown')
 puts person1.play_hooky

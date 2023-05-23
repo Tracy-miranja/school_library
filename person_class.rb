@@ -1,5 +1,5 @@
-require_relative './namable_class.rb'
-require_relative './base_decorator.rb'
+require_relative './namable_class'
+require_relative './base_decorator'
 
 class Person < Nameable
   attr_accessor :name, :age, :parent_permission
@@ -8,8 +8,9 @@ class Person < Nameable
   def initialize(age, name: 'Unknown', parent_permission: true)
     @id = Random.rand(1..1000)
     @age = age
+    @name = name
     @parent_permission = parent_permission
-    super() 
+    super()
   end
 
   def can_use_services?
@@ -17,7 +18,7 @@ class Person < Nameable
   end
 
   def correct_name
-    @name 
+    @name
   end
 
   private
@@ -27,7 +28,7 @@ class Person < Nameable
   end
 end
 
-person = Person.new(22, 'tracy')
+person = Person.new(22, name: 'maximilianus')
 puts person.correct_name
 
 capitalized_person = CapitalizeDecorator.new(person)
