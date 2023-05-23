@@ -1,5 +1,7 @@
 require_relative './namable_class'
 require_relative './base_decorator'
+require_relative './trimer_decorator'
+require_relative './capitalize_decorate'
 
 class Person < Nameable
   attr_accessor :name, :age, :parent_permission
