@@ -12,6 +12,7 @@ class Person < Nameable
     @age = age
     @name = name
     @parent_permission = parent_permission
+    @rentals = []
     super()
   end
 
@@ -21,6 +22,16 @@ class Person < Nameable
 
   def correct_name
     @name
+  end
+
+  def add_rentals(rental)
+    @rentals <<rental
+    rental.person=self
+end
+
+def remove_rental(rental)
+    rentals.delete(rental)
+    rental.person = nil
   end
 
   private
