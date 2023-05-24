@@ -5,7 +5,7 @@ require_relative './capitalize_decorate'
 
 class Person < Nameable
   attr_accessor :name, :age, :parent_permission
-  attr_reader :id
+  attr_reader :id, :rentals
 
   def initialize(age, name: 'Unknown', parent_permission: true)
     @id = Random.rand(1..1000)
