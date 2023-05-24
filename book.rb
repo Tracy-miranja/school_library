@@ -1,18 +1,21 @@
+require_relative './rental'
+
 class Book
-    attr_accessor :title, :author
-    attr_reader :rentals
-    def initialize(title,author)
-        @title = title
-        @author = author
-        rentals =[]
-    end
+  attr_accessor :title, :author
+  attr_reader :rentals
 
-    def add_rental(rental)
-        @retals<< rental
-        rental.book = self unless book.rental == self
-    end
+  def initialize(title, author)
+    @title = title
+    @author = author
+    @rentals = []
+  end
 
-    def remove_rental(rental)
-        rentals.delete(rental)
-      end
+  def add_rental(rental)
+    @rentals << rental
+    rental.book = self unless book.rental == self
+  end
+
+  def remove_rental(rental)
+    rentals.delete(rental)
+  end
 end

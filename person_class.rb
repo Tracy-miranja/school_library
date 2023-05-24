@@ -2,6 +2,7 @@ require_relative './namable_class'
 require_relative './base_decorator'
 require_relative './trimer_decorator'
 require_relative './capitalize_decorate'
+require_relative './rental'
 
 class Person < Nameable
   attr_accessor :name, :age, :parent_permission
@@ -25,11 +26,11 @@ class Person < Nameable
   end
 
   def add_rentals(rental)
-    @rentals <<rental
-    rental.person=self
-end
+    @rentals << rental
+    rental.person = self
+  end
 
-def remove_rental(rental)
+  def remove_rental(rental)
     rentals.delete(rental)
     rental.person = nil
   end
