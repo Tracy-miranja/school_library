@@ -1,4 +1,4 @@
-class Room
+class Classroom
   attr_accessor :label
   attr_reader :students
 
@@ -8,7 +8,7 @@ class Room
   end
 
   def add_student(student)
-    @gstudents << student
-    student.classroom = self unless Student.classroom == self
+    @students << student
+    student.classroom = self unless student.classroom == self
   end
 end
