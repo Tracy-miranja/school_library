@@ -1,103 +1,61 @@
-require_relative './person_class'
-require_relative './book'
-require_relative './rental'
 require_relative './teacher_class'
 require_relative './student_class'
+require_relative 'rental'
+require_relative 'book'
+require_relative './person_class'
 
 class App
   def initialize
-    @people = []
     @books = []
-    @rentals = []
+    @peoples = []
   end
 
-  def list_all_books
-    puts 'Books:'
-    @books.each { |book| puts book }
+  def list_books
+    @books.each { |book| puts "Title: #{book.title} Author: #{book.author} \n" }
   end
 
-  def list_all_people
-    puts 'People:'
-    @people.each { |person| puts person }
-  end
-
-  def create_person_prompt
-    puts 'Enter person name:'
-    name = gets.chomp
-
-    puts 'Enter person age:'
-    age = gets.chomp.to_i
-
-    puts 'Enter person type (teacher or student):'
-    type = gets.chomp
-
-    create_person(name, age, type)
-  end
-
-  def create_person(name, age, type)
-    person = type == 'teacher' ? Teacher.new(name, age) : Student.new(name, age)
-    @people << person
-    puts "Person created: #{person}"
-  end
-
-  def create_book_prompt
-    puts 'Enter book title:'
-    title = gets.chomp
-
-    puts 'Enter book author:'
-    author = gets.chomp
-
-    create_book(title, author)
-  end
-
-  def create_book(title, author)
-    book = Book.new(title, author)
-    @books << book
-    puts "Book created: #{book}"
-  end
-
-  def create_rental_prompt
-    puts 'Enter book ID:'
-    book_id = gets.chomp.to_i
-
-    puts 'Enter person ID:'
-    person_id = gets.chomp.to_i
-
-    puts 'Enter due date:'
-    due_date = gets.chomp
-
-    create_rental(book_id, person_id, due_date)
-  end
-
-  def create_rental(book_id, person_id, due_date)
-    found_book = @books.find { |book| book.id == book_id }
-    found_person = @people.find { |person| person.id == person_id }
-
-    if found_book.nil? || found_person.nil?
-      puts 'Invalid book ID or person ID.'
-    else
-      rental = Rental.new(found_book, found_person, due_date)
-      @rentals << rental
-      puts "Rental created: #{rental}"
+  def list_peoples
+    @peoples.each do |people|
+      puts "[#{people.class.name}] Name: #{people.name} ID: #{people.id} Age: #{people.age} \n"
     end
   end
 
-  def list_rentals_for_person_prompt
-    puts 'Enter person ID:'
-    person_id = gets.chomp.to_i
-
-    list_rentals_for_person(person_id)
+  def create_teacher(age, specialization, parent_permission, name)
+    @peoples << Teacher.new(age, specialization, parent_permission: parent_permission, name: name)
   end
 
-  def list_rentals_for_person(person_id)
-    found_person = @people.find { |person| person.id == person_id }
+def create_student(age, name, parent_permission)
+    @peoples << Student.new(age, name, parent_permission: parent_permission)
+  end  
 
-    if found_person.nil?
-      puts 'Invalid person ID.'
-    else
-      rentals = @rentals.select { |rental| rental.person == found_person }
-      puts "Rentals for #{found_person.name}:"
-      rentals.each { |rental| puts rental }
+  def create_book
+    puts 'Title:'
+    title = gets.chomp
+    puts 'Author:'
+    author = gets.chomp
+    @books << Book.new(title, author)
+  end
+
+  def create_rental
+    puts 'Select a book from the following list by number'
+    @books.each.with_index { |book, idx| puts "#{idx}) Book #{book.title} by #{book.author}" }
+    book_index = gets.chomp.to_i
+    puts 'Select a person from the following list by number(not ID)'
+    @peoples.each.with_index do |person, idx|
+      puts "#{idx}) [#{person.class.name}] Name #{person.name}, ID #{person.id}, Age #{person.age}"
+    end
+    person_index = gets.chomp.to_i
+    puts 'Date:-'
+    date = gets.chomp
+    Rental.new(@books[book_index], @peoples[person_index], date)
+  end
+
+  def list_person_rentals(person_id)
+    @peoples.each do |person|
+      if person.id == person_id
+        puts 'Rentals:-'
+        person.rentals.each { |rental| puts "Date #{rental.date}, Book #{rental.book.title} by #{rental.book.author}" }
+      end
     end
   end
 end
