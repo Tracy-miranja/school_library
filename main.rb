@@ -10,6 +10,7 @@ def print_menu
   puts '6. List all rentals for a person'
   puts '7. Quit'
 end
+
 def create_person(app)
   puts 'Do you want to create a student(1) or a teacher(2)? [Input the number]:-'
   option = gets.chomp
@@ -35,29 +36,28 @@ def create_person(app)
 end
 
 def handle_choice(choice, app)
-    choice_actions = {
-      1 => :list_all_books,
-      2 => :list_all_people,
-      3 => :create_person,
-      4 => :create_book_prompt,
-      5 => :create_rental_prompt,
-      6 => :list_rentals_for_person_prompt,
-      7 => :quit
-    }
-  
-    action = choice_actions[choice]
-  
-    if action
-      if action == :create_person
-        create_person(app)  # Pass the `app` argument
-      else
-        app.send(action)
-      end
+  choice_actions = {
+    1 => :list_all_books,
+    2 => :list_all_people,
+    3 => :create_person,
+    4 => :create_book_prompt,
+    5 => :create_rental_prompt,
+    6 => :list_rentals_for_person_prompt,
+    7 => :quit
+  }
+
+  action = choice_actions[choice]
+
+  if action
+    if action == :create_person
+      create_person(app) # Pass the `app` argument
     else
-      puts 'Invalid choice. Please try again.'
+      app.send(action)
     end
+  else
+    puts 'Invalid choice. Please try again.'
   end
-  
+end
 
 def main
   app = App.new
