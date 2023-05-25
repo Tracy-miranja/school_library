@@ -6,9 +6,4 @@ class Rental
     @book = book
     @person = nil
   end
-
-  def book=(book)
-    @book = book
-    book.add_rental(self) unless rental.book includes?(self)
-  end
 end
