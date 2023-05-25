@@ -24,9 +24,9 @@ class App
     @peoples << Teacher.new(age, specialization, parent_permission: parent_permission, name: name)
   end
 
-def create_student(age, name, parent_permission)
+  def create_student(age, name, parent_permission)
     @peoples << Student.new(age, name, parent_permission: parent_permission)
-  end  
+  end
 
   def create_book
     puts 'Title:'
